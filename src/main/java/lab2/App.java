@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Random;
 
 
 public class App extends Application {
@@ -46,14 +47,39 @@ public class App extends Application {
     }
 
     private void createElements(GraphicsContext context) {
-        context.setStroke(Color.DARKGREEN);
+        drawAxis(context);
+        Random rand=new Random();
+        context.setStroke(Color.rgb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
         context.setLineWidth(3);
         context.strokeOval(xCircle,yCircle,radius,radius);
+        context.setStroke(Color.rgb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
         context.strokeRect(xRect,yRect,widthRect,heightRect);
+        context.setStroke(Color.rgb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
         context.strokeLine(0,c,500,k*500+c);
 
-        context.setFill(Color.RED);
+        context.setFill(Color.rgb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
         context.fillOval(x,y,10,10);
+
+    }
+
+    private void drawAxis(GraphicsContext context) {
+        context.setStroke(Color.BLACK);
+        context.setLineWidth(3);
+        context.strokeLine(3,3,500,5);
+        context.strokeLine(3,3,3,500);
+
+        for(int i=25;i<=500;i+=25) {
+            context.strokeLine(i,0,i,6);
+            context.fillText(String.valueOf(i),i,20);
+            context.strokeLine(0,i,6,i);
+            context.fillText(String.valueOf(i),10,i);
+        }
+        context.strokeLine(490,2,500,5);
+        context.strokeLine(490,8,500,5);
+
+        context.strokeLine(0,490,3,500);
+        context.strokeLine(6,490,3,500);
+
     }
 
     private void parseProperties() {
