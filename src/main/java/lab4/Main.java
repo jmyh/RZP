@@ -31,10 +31,10 @@ public class Main {
     }
 
     private void encryptClass() {
-//        System.out.println(getClass().getClassLoader().getResource("lab4/TestClass.class"));
+//        System.out.println(getClass().getClassLoader().getResource("lab4/TestClass3.class"));
         byte[] byteArray=null;
         //reading test class
-        try(InputStream inputStream=getClass().getClassLoader().getResourceAsStream("lab4/TestClass.class");
+        try(InputStream inputStream=getClass().getClassLoader().getResourceAsStream("lab4/TestClass3.class");
             ByteArrayOutputStream byteStream=new ByteArrayOutputStream()) {
 
             byte[] buffer = new byte[1024];
@@ -55,7 +55,7 @@ public class Main {
             encryptArray[i]= (byte) ((byteArray[i]+3)%256);
 
         //writing test class
-        try(FileOutputStream fos=new FileOutputStream(getClass().getClassLoader().getResource("").getPath()+"lab4/TestClass.class")) {
+        try(FileOutputStream fos=new FileOutputStream(getClass().getClassLoader().getResource("").getPath()+"lab4/TestClass3.class")) {
             fos.write(encryptArray);
         } catch (IOException e) {
             e.printStackTrace();
